@@ -8,10 +8,20 @@ class App extends Component {
     super(props);
     
     this.state = { colors: this.props.allColors.slice(0, 32) };
+    
+    setInterval(() => {
+      const colors = this.state.colors.slice();
+      const randomIndex = Math.floor(Math.random() * colors.length);
+      const randomColorIndex = Math.floor(Math.random() * this.props.allColors.length);
+      const randomColor = this.props.allColors[randomColorIndex];
+      
+      colors[randomIndex] = randomColor;
+      this.setState({colors});
+    }, 300);
   }
   
   render() {
-    const boxes = this.state.colors.map((color) => <Box color={color} />);
+    const boxes = this.state.colors.map((color, index) => <Box color={color} key={index}/>);
 
     return (
       <div className="App">
