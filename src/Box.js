@@ -1,9 +1,9 @@
 import React from 'react';
 import './Box.css';
 
-const Box = (props) => {
+const Box = ({color}) => {
     const bgColor = {
-        backgroundColor: props.color
+        backgroundColor: color
     };
     
     return (<div style={bgColor} className="box"></div>);

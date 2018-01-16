@@ -2,26 +2,38 @@ import React, { Component } from 'react';
 import Box from './Box';
 import './App.css';
 
+const NUM_BOXES = 32;
+
 class App extends Component {
   
   constructor(props) {
     super(props);
     
-    this.state = { colors: this.props.allColors.slice(0, 32) };
+    this.state = { 
+      colors: Array(NUM_BOXES)
+                .fill()
+                .map(this.getRandomColor, this) 
+      
+    };
     
     setInterval(() => {
       const colors = this.state.colors.slice();
       const randomIndex = Math.floor(Math.random() * colors.length);
-      const randomColorIndex = Math.floor(Math.random() * this.props.allColors.length);
-      const randomColor = this.props.allColors[randomColorIndex];
       
-      colors[randomIndex] = randomColor;
+      colors[randomIndex] = this.getRandomColor();
       this.setState({colors});
     }, 300);
   }
   
+  getRandomColor() {
+    const randomIndex = Math.floor(Math.random() * this.props.allColors.length);
+    return this.props.allColors[randomIndex];
+  }
+  
   render() {
-    const boxes = this.state.colors.map((color, index) => <Box color={color} key={index}/>);
+    const boxes = this.state.colors.map((color, index) => (
+      <Box color={color} key={index}/>
+    ));
 
     return (
       <div className="App">
