@@ -1,0 +1,5 @@
+.box {
+    height: 150px;
+    flex-basis: 150px;
+    margin-bottom: 5px;
+}

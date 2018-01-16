@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
+import Box from './Box';
 import './App.css';
 
 class App extends Component {
   
   constructor(props) {
     super(props);
+    
+    this.state = { colors: this.props.allColors.slice(0, 32) };
   }
   
   render() {
+    const boxes = this.state.colors.map((color) => <Box color={color} />);
 
     return (
       <div className="App">
-        Render boxes here
+        {boxes}
       </div>
     );
   }
